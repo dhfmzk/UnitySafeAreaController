@@ -21,17 +21,13 @@ public class SafeAreaController : MonoBehaviour {
 
 	public List<RectTransform> safeAreaList;
 
-	private Rect safeArea;
-	private RectTransform rootRectTransform = null;
-
+	[HideInInspector]
+	public bool isSafeAreaOn;
+	private GameObject frameDeco;
 	private Vector2 saAnchorMin;
 	private Vector2 saAnchorMax;
 
 	private void UpdateSafeArea(Rect _safeArea, Vector2 _screen) {
-
-		if(rootRectTransform == null) {
-			this.rootRectTransform = this.GetComponent<RectTransform>();
-		}
 
 		// Get Safe Area and calc anchor (float)
 		this.saAnchorMin.x = _safeArea.x / _screen.x;
@@ -39,12 +35,7 @@ public class SafeAreaController : MonoBehaviour {
 		this.saAnchorMax.x = (_safeArea.x + _safeArea.width) / _screen.x;
 		this.saAnchorMax.y = (_safeArea.y + _safeArea.height) / _screen.y;
 
-
-		// Set anchor
-		this.rootRectTransform.anchorMin = saAnchorMin;
-		this.rootRectTransform.anchorMax = saAnchorMax;
-
-		// Set anchor onther roots
+		// Set anchors
 		foreach(RectTransform rt in safeAreaList) {
 			rt.anchorMin = saAnchorMin;
 			rt.anchorMax = saAnchorMax;
@@ -91,5 +82,54 @@ public class SafeAreaController : MonoBehaviour {
 
 		UpdateSafeArea (new Rect(0, 0, 1, 1), new Vector2(1, 1));
 
+	}
+
+	public void SetupDeviceFrame(eSafeAreaType _type) {
+
+		// Get prefab name and path
+		string prefabName = "TA Deco";
+		string prefabPath = _type.ToString() + "/" + prefabName;
+
+		// Make and setup deco game object
+		GameObject prefab = Resources.Load(prefabPath) as GameObject;
+		this.frameDeco = MonoBehaviour.Instantiate (prefab) as GameObject;
+		frameDeco.name = prefabName;
+		
+		RectTransform frameDecoRectTransform = frameDeco.GetComponent<RectTransform>();
+		frameDecoRectTransform.SetParent(this.transform);
+
+		frameDecoRectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+		frameDecoRectTransform.offsetMin = new Vector2(0.0f, 0.0f);
+		frameDecoRectTransform.offsetMax = new Vector2(0.0f, 0.0f);
+
+		// Setup Scale (because canvas base scale)
+		Vector3 scaleFactor = this.GetComponent<RectTransform>().localScale;
+		foreach(Transform tr in frameDeco.transform) {
+			RectTransform temp = tr.GetComponent<RectTransform>();
+			temp.localScale = new Vector3(temp.localScale.x / scaleFactor.x, temp.localScale.y / scaleFactor.y, temp.localScale.z / scaleFactor.z);
+		}
+
+	}
+
+	public void DeleteDeviceFrame() {
+
+		Queue<GameObject> temp = new Queue<GameObject>();
+
+		// Find "TA Deco" objects
+		foreach(Transform tr in this.transform) {
+			if(tr.name == "TA Deco") {
+				temp.Enqueue(tr.gameObject);
+			}
+		}
+
+		// And destroy
+		while(temp.Count > 0) {
+			if(Application.isEditor) {
+				Object.DestroyImmediate(temp.Dequeue());
+			}
+			else {
+				Object.Destroy(temp.Dequeue());
+			}
+		}
 	}
 }
