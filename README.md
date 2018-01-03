@@ -1,7 +1,17 @@
 # Unity-SafeAreaController
 > This plugin allows you to easily check and test the Safe Area for iPhone X in Unity Editor
 
-## How to use
+## Preview
+![fig-0](ReadmeFig/fig-0.jpg)
+
+## Key Features
+- Easy to support iPhone X
+- Fast UGUI-SafeArea testing in editor mode
+- Future iPhone UI support is simpler and more scalable
+
+## TODO
+
+## How to Use
 
 ## License
 
