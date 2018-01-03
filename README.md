@@ -1,4 +1,4 @@
-# Unity-SafeAreaController
+# UnitySafeAreaController
 > This plugin allows you to easily check and test the Safe Area for iPhone X in Unity Editor
 
 ## Preview
@@ -10,6 +10,12 @@
 - Future iPhone UI support is simpler and more scalable
 
 ## TODO
+- [X] Support iPhone X Auto Safe Area
+- [X] Support iPhone X Tall test mode (Frame, Notch)
+- [ ] Support iPhone X Wide test mode (Frame, Notch)
+- [ ] Add homebar UI
+- [ ] Refactoring and Class separation
+- [ ] Add Document
 
 ## How to Use
 
