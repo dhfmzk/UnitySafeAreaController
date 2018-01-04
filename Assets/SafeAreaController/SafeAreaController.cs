@@ -74,7 +74,7 @@ public class SafeAreaController : MonoBehaviour {
 		
 		// Listing SafeArea Device
 		if (_type == eSafeAreaType.IPHONE_X_TALL) { UpdateSafeArea(new Rect (0, 102, 1125, 2202), new Vector2(1125.0f, 2436.0f)); }
-		if (_type == eSafeAreaType.IPHONE_X_WIDE) { UpdateSafeArea(new Rect (102, 0, 2202, 1125), new Vector2(2436.0f, 1125.0f)); }
+		if (_type == eSafeAreaType.IPHONE_X_WIDE) { UpdateSafeArea(new Rect (132, 0, 2202, 1125), new Vector2(2436.0f, 1125.0f)); }
 
 	}
 
