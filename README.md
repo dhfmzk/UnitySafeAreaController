@@ -12,12 +12,21 @@
 ## TODO
 - [X] Support iPhone X Auto Safe Area
 - [X] Support iPhone X Tall test mode (Frame, Notch)
-- [ ] Support iPhone X Wide test mode (Frame, Notch)
+- [X] Support iPhone X Wide test mode (Frame, Notch)
 - [ ] Add homebar UI
 - [ ] Refactoring and Class separation
-- [ ] Add Document
+- [X] Add Document
 
 ## How to Use
+![fig-1](ReadmeFig/fig-1.jpg)
+
+> 1. Add "SafeAreaController.cs" in your root canvas.
+> 2. Choose when to set up the SafeArea.
+> 3. Put the UGUI bundle that should be in the Safe Area into the List.
+> 4. Select the "Test Device Type" and Click "Show Safe-Area".
+
+## Result
+![fig-2](ReadmeFig/fig-2.gif)
 
 ## License
 
