@@ -3,6 +3,19 @@
 
 <img src="https://github.com/rlatkdgus500/UnitySafeAreaController/blob/master/Logo.png" align="center" width=256 height=256 />
 
+# KeyFeature
+There are two main ways to support SafeArea on iOS.
+1. Put the `Game Scene` into the `SafeArea` (like fig.1)
+2. Put only `important UI` into `SafeArea` (like fig.2)
+
+This project supports both of the above methods and is intended to be applied to various structures.
+
+# To Do
+- [ ] Support method.1
+- [ ] Support method.2
+- [ ] Add Tester
+
+# How to Use
 **Update Soon**
 
 ## License
