@@ -4,7 +4,7 @@ using UnityEditor;
 [CustomEditor (typeof (SafeAreaController))]
 public class SafeAreaControllerEditor : Editor {
 
-	public eSafeAreaType testType;
+	public SafeAreaType testType;
 
 	public override void OnInspectorGUI() {
 		base.OnInspectorGUI ();
@@ -14,14 +14,14 @@ public class SafeAreaControllerEditor : Editor {
 		EditorGUILayout.Space();
 		EditorGUILayout.LabelField("Safe-Area Test in Editor");
 
-		testType = (eSafeAreaType)EditorGUILayout.EnumPopup("Test Device Type:", testType);
+		testType = (SafeAreaType)EditorGUILayout.EnumPopup("Test Device Type:", testType);
 		
-		if(!saController.isSafeAreaOn) {
+		if(!saController.IsSafeAreaOn) {
 			if (GUILayout.Button("Show Safe-Area")) {
 				if (saController) {
 					saController.ShowSafeAreaFrame(testType);
 					saController.SetupDeviceFrame(testType);
-					saController.isSafeAreaOn = true;
+					saController.IsSafeAreaOn = true;
 				}
 			}
 		}
@@ -30,7 +30,7 @@ public class SafeAreaControllerEditor : Editor {
 				if (saController) {
 					saController.HideSafeAreaFrame(testType);
 					saController.DeleteDeviceFrame();
-					saController.isSafeAreaOn = false;
+					saController.IsSafeAreaOn = false;
 				}
 			}
 		}
