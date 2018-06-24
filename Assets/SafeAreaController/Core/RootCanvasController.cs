@@ -34,14 +34,15 @@ public class RootCanvasController: MonoBehaviour {
     private Canvas _mainCanvas;
 
     // Update Function
-    private void UpdateSubCanvasProperty() {
+    public void UpdateSubCanvasProperty() {
         var targetCanvasArray = GetComponentsInChildren<CanvasPropertyOverrider>();
 
         foreach (var targetCanvas in targetCanvasArray) {
-            targetCanvas.UpdateCanvasProperty();
+            targetCanvas.UpdateCanvasProperty(_mainCanvas.sortingOrder);
         }
     }
 
+    // Life cycle function
     private void Awake() {
         _mainCanvas = GetComponent<Canvas>();
 
@@ -69,7 +70,7 @@ public class RootCanvasController: MonoBehaviour {
             UpdateSubCanvasProperty();
     }
 
-
+    // Utility
     private bool haveMask(AreaUpdateTiming mask) {
         return ((int)UpdateTimming & (int)mask) != 0;
     }

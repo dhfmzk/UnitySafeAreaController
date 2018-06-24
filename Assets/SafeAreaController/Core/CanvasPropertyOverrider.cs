@@ -11,7 +11,7 @@ public class CanvasPropertyOverrider : MonoBehaviour {
     public int additionalSortingOrder = 0;
 
     // Update Method
-    public void UpdateCanvasProperty() {
+    public void UpdateCanvasProperty(int rootSortingOrder) {
 
         // 0. Get Value
         Canvas myCanvas = GetComponent<Canvas>();
@@ -34,6 +34,6 @@ public class CanvasPropertyOverrider : MonoBehaviour {
         }
 
         // 2. Add aditional sorting order
-        myCanvas.sortingOrder = additionalSortingOrder;
+        myCanvas.sortingOrder = rootSortingOrder + additionalSortingOrder;
     }
 }
