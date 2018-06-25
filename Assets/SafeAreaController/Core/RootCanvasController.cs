@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum SafeAreaMethodType {
-    CutOff,
-    FullScreen,
+    CanvasBased,
+    CameraBased,
 };
 
 public enum AreaUpdateTiming {
@@ -26,19 +26,42 @@ public enum SafeAreaType {
 [RequireComponent(typeof(Canvas))]
 public class RootCanvasController: MonoBehaviour {
 
-    public SafeAreaMethodType ControlType = SafeAreaMethodType.FullScreen;
+    public SafeAreaMethodType ControlType = SafeAreaMethodType.CanvasBased;
 
     [EnumMask]
     public AreaUpdateTiming UpdateTimming = AreaUpdateTiming.Awake;
 
     private Canvas _mainCanvas;
 
-    // Update Function
-    public void UpdateSubCanvasProperty() {
+    // Update Canvas Function
+    private void UpdateSubCanvasProperty() {
         var targetCanvasArray = GetComponentsInChildren<CanvasPropertyOverrider>();
 
         foreach (var targetCanvas in targetCanvasArray) {
             targetCanvas.UpdateCanvasProperty(_mainCanvas.sortingOrder);
+        }
+    }
+
+    // Update Camera Function
+    private void UpdateCameraProperty() {
+        var targetCameraArray = FindObjectsOfType<CameraPropertyOverrider>();
+
+        foreach(var targetCamera in targetCameraArray) {
+            targetCamera.UpdateCameraProperty();
+        }
+    }
+
+    // Update Function
+    public void UpdateSafeArea() {
+        switch (this.ControlType) {
+            case SafeAreaMethodType.CanvasBased:
+                UpdateSubCanvasProperty();
+                break;
+            case SafeAreaMethodType.CameraBased:
+                UpdateCameraProperty();
+                break;
+            default:
+                break;
         }
     }
 
@@ -47,27 +70,27 @@ public class RootCanvasController: MonoBehaviour {
         _mainCanvas = GetComponent<Canvas>();
 
         if (haveMask(AreaUpdateTiming.Awake))
-           UpdateSubCanvasProperty();
+            UpdateSafeArea();
     }
 
     private void OnEnable() {
         if (haveMask(AreaUpdateTiming.OnEnable))
-            UpdateSubCanvasProperty();
+            UpdateSafeArea();
     }
 
     private void Start() {
         if (haveMask(AreaUpdateTiming.Start))
-            UpdateSubCanvasProperty();
+            UpdateSafeArea();
     }
 
     private void Update() {
         if (haveMask(AreaUpdateTiming.Update))
-            UpdateSubCanvasProperty();
+            UpdateSafeArea();
     }
 
     private void FixedUpdate() {
         if (haveMask(AreaUpdateTiming.FixedUpdate))
-            UpdateSubCanvasProperty();
+            UpdateSafeArea();
     }
 
     // Utility
