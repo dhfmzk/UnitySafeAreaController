@@ -24,7 +24,7 @@ public enum SafeAreaType {
 }
 
 [RequireComponent(typeof(Canvas))]
-public class RootCanvasController: MonoBehaviour {
+public class SafeAreaController: MonoBehaviour {
 
     public SafeAreaMethodType ControlType = SafeAreaMethodType.CanvasBased;
 
@@ -58,7 +58,7 @@ public class RootCanvasController: MonoBehaviour {
                 UpdateSubCanvasProperty();
                 break;
             case SafeAreaMethodType.CameraBased:
-                UpdateCameraProperty();
+                // UpdateCameraProperty();
                 break;
             default:
                 break;
