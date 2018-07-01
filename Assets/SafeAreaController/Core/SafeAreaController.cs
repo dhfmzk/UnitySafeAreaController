@@ -58,7 +58,7 @@ public class SafeAreaController: MonoBehaviour {
                 UpdateSubCanvasProperty();
                 break;
             case SafeAreaMethodType.CameraBased:
-                // UpdateCameraProperty();
+                UpdateCameraProperty();
                 break;
             default:
                 break;
