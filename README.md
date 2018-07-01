@@ -5,18 +5,31 @@
 
 # KeyFeature
 There are two main ways to support SafeArea on iOS.
-1. Put the `Game Scene` into the `SafeArea` (like fig.1)
-2. Put only `important UI` into `SafeArea` (like fig.2)
+1. control `Camera.rect`
+2. control `Canvas & Sub-Canvas`
 
 This project supports both of the above methods and is intended to be applied to various structures.
 
 # To Do
-- [ ] Support method.1
-- [ ] Support method.2
-- [ ] Add Tester
+- [X] Support `Canvas Based Method`
+- [X] Support `Camera Based Method`
+- [ ] Add Tester in unity editor
 
 # How to Use
-**Update Soon**
+### Canvas based method
+1. Add `SafeAreaConroller` in your root canvas
+2. `control type` set `Canvas Based`
+3. Choose safeArea update timing (can multi-select)
+4. Add `CanvasPropertyOverrider` in your sub-canvas
+5. If the canvas should be inside the `SafeArea`, check `is Safe Canvas`
+
+### Camera based method
+1. Add `SafeAreaConroller` in your root canvas
+2. `control type` set `Camera Based`
+3. Choose safeArea update timing (can multi-select)
+4. Add `CameraPropertyOverrider` in your camera obejct
+5. If camera screen should be inside the `SafeArea`, check `is Safe Area Camrea`
+
 
 ## License
 
