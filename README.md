@@ -11,9 +11,10 @@ There are two main ways to support SafeArea on iOS.
 This project supports both of the above methods and is intended to be applied to various structures.
 
 # To Do
-- [X] Support `Canvas Based Method`
-- [X] Support `Camera Based Method`
+- [ ] Support Android `cut off` and soft-key area
+- [ ] Support all rotation
 - [ ] Add Tester in unity editor
+- [ ] Show Notch line
 
 # How to Use
 ### Canvas based method
