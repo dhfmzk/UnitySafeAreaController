@@ -4,28 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum SafeAreaMethodType {
+public enum SafeAreaMethodType
+{
     CanvasBased,
     CameraBased,
 };
 
-public enum AreaUpdateTiming {
+public enum AreaUpdateTiming
+{
     OnReciveMessage = (1 << 0),
-    Awake           = (1 << 1),
-    OnEnable        = (1 << 2),
-    Start           = (1 << 3),
-    Update          = (1 << 4),
-    FixedUpdate     = (1 << 5),
+    Awake = (1 << 1),
+    OnEnable = (1 << 2),
+    Start = (1 << 3),
+    Update = (1 << 4),
+    FixedUpdate = (1 << 5),
 };
 
-public enum SafeAreaType {
-    IphoneXTall,
-    IphoneXWide
-}
-
 [RequireComponent(typeof(Canvas))]
-public class SafeAreaController: MonoBehaviour {
-
+public class SafeAreaController : MonoBehaviour
+{
     public SafeAreaMethodType ControlType = SafeAreaMethodType.CanvasBased;
 
     [EnumMask]
@@ -34,26 +31,32 @@ public class SafeAreaController: MonoBehaviour {
     private Canvas _mainCanvas;
 
     // Update Canvas Function
-    private void UpdateSubCanvasProperty() {
+    private void UpdateSubCanvasProperty()
+    {
         var targetCanvasArray = GetComponentsInChildren<CanvasPropertyOverrider>();
 
-        foreach (var targetCanvas in targetCanvasArray) {
+        foreach (var targetCanvas in targetCanvasArray)
+        {
             targetCanvas.UpdateCanvasProperty(_mainCanvas.sortingOrder);
         }
     }
 
     // Update Camera Function
-    private void UpdateCameraProperty() {
+    private void UpdateCameraProperty()
+    {
         var targetCameraArray = FindObjectsOfType<CameraPropertyOverrider>();
 
-        foreach(var targetCamera in targetCameraArray) {
+        foreach (var targetCamera in targetCameraArray)
+        {
             targetCamera.UpdateCameraProperty();
         }
     }
 
     // Update Function
-    public void UpdateSafeArea() {
-        switch (this.ControlType) {
+    public void UpdateSafeArea()
+    {
+        switch (this.ControlType)
+        {
             case SafeAreaMethodType.CanvasBased:
                 UpdateSubCanvasProperty();
                 break;
@@ -66,40 +69,41 @@ public class SafeAreaController: MonoBehaviour {
     }
 
     // Life cycle function
-    private void Awake() {
+    private void Awake()
+    {
         _mainCanvas = GetComponent<Canvas>();
 
-        if (haveMask(AreaUpdateTiming.Awake))
+        if (HaveMask(AreaUpdateTiming.Awake))
             UpdateSafeArea();
     }
 
-    private void OnEnable() {
-        if (haveMask(AreaUpdateTiming.OnEnable))
+    private void OnEnable()
+    {
+        if (HaveMask(AreaUpdateTiming.OnEnable))
             UpdateSafeArea();
     }
 
-    private void Start() {
-        if (haveMask(AreaUpdateTiming.Start))
+    private void Start()
+    {
+        if (HaveMask(AreaUpdateTiming.Start))
             UpdateSafeArea();
     }
 
-    private void Update() {
-        if (haveMask(AreaUpdateTiming.Update))
+    private void Update()
+    {
+        if (HaveMask(AreaUpdateTiming.Update))
             UpdateSafeArea();
     }
 
-    private void FixedUpdate() {
-        if (haveMask(AreaUpdateTiming.FixedUpdate))
+    private void FixedUpdate()
+    {
+        if (HaveMask(AreaUpdateTiming.FixedUpdate))
             UpdateSafeArea();
     }
 
     // Utility
-    private bool haveMask(AreaUpdateTiming mask) {
+    private bool HaveMask(AreaUpdateTiming mask)
+    {
         return ((int)UpdateTimming & (int)mask) != 0;
     }
-
-// =================================================================
-// 		Functions 4 Editor
-// =================================================================
-	
 }

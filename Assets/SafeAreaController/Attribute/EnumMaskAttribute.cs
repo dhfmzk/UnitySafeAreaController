@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnumMask : PropertyAttribute {
+public class EnumMask : PropertyAttribute
+{
     public EnumMask() { }
 }
