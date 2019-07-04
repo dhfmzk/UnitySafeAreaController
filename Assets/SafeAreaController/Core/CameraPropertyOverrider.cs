@@ -40,7 +40,7 @@ public class CameraPropertyOverrider : MonoBehaviour
     }
 
     // Update Method
-    public void UpdateCameraProperty()
+    public void UpdateCameraProperty(Rect offset)
     {
         if (isSafeAreaCamera)
         {
