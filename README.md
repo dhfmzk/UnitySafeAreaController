@@ -1,22 +1,18 @@
 # UnitySafeAreaController
+![unity](https://img.shields.io/badge/unity-2017.4.29f1-lightgrey.svg)
+![last-commit](https://img.shields.io/github/last-commit/rlatkdgus500/UnitySafeAreaController.svg)
+![issues](https://img.shields.io/github/issues/rlatkdgus500/UnitySafeAreaController.svg)
+![license](https://img.shields.io/github/license/rlatkdgus500/UnitySafeAreaController.svg)
 > This plugin allows you to easily check and test the Safe Area for iPhone X in Unity Editor
 
-<img src="https://github.com/rlatkdgus500/UnitySafeAreaController/blob/master/Logo.png" align="center" width=256 height=256 />
-
-# KeyFeature
+## KeyFeature
 There are two main ways to support SafeArea on iOS.
 1. control `Camera.rect`
 2. control `Canvas & Sub-Canvas`
 
 This project supports both of the above methods and is intended to be applied to various structures.
 
-# To Do
-- [ ] Support Android `cut off` and soft-key area
-- [ ] Support all rotation
-- [ ] Add Tester in unity editor
-- [ ] Show Notch line
-
-# How to Use
+## How to Use
 ### Canvas based method
 1. Add `SafeAreaConroller` in your root canvas
 2. `control type` set `Canvas Based`
@@ -31,6 +27,12 @@ This project supports both of the above methods and is intended to be applied to
 4. Add `CameraPropertyOverrider` in your camera obejct
 5. If camera screen should be inside the `SafeArea`, check `is Safe Area Camrea`
 
+## To Do
+- [X] Support Android `cut off` and soft-key area
+- [ ] Support all rotation
+- [ ] Add Tester in unity editor
+- [ ] Show Notch line
+- [ ] Add new logo
 
 ## License
 
